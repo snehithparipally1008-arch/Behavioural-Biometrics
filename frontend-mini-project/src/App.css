@@ -1,0 +1,14 @@
+/* App-level layout */
+.app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  zoom: 1.09;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+}

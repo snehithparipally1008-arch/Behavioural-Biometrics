@@ -1,0 +1,263 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #020b18;
+  --bg-secondary: #041020;
+  --bg-card: rgba(6, 20, 45, 0.75);
+  --bg-card2: rgba(8, 25, 55, 0.5);
+  --border-glow: rgba(0, 200, 255, 0.18);
+  --border-bright: rgba(0, 200, 255, 0.4);
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0, 212, 255, 0.7);
+  --blue: #0070ff;
+  --purple: #7c3aed;
+  --green: #00ff88;
+  --red: #ff4444;
+  --amber: #ffaa00;
+  --text-primary: #e8f4ff;
+  --text-muted: #6a9fc0;
+  --text-dim: #2e5070;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-dim);
+}
+
+/* ── BACKGROUND CANVAS ── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── GLASS ── */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: glassGlow 18s ease-in-out infinite;
+}
+.glass-sm {
+  background: var(--bg-card2);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: glassGlow 18s ease-in-out infinite;
+}
+
+/* ── GRADIENT TEXT ── */
+.grad-cyan {
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 55%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-purple {
+  background: linear-gradient(135deg, #fff 0%, var(--purple) 55%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-green {
+  background: linear-gradient(135deg, #fff 0%, var(--green) 55%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+/* ── TOP-LINE BAR ON CARDS ── */
+.card-top-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  border-radius: 16px 16px 0 0;
+}
+
+/* ── SCAN LINE ANIMATION ── */
+@keyframes scanline {
+  0%, 100% { opacity: 0; transform: translateY(-4px); }
+  50% { opacity: 1; transform: translateY(4px); }
+}
+.scan-anim {
+  animation: scanline 2s ease-in-out infinite;
+}
+
+/* ── PULSE DOT ── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+/* ── FLOAT UP ── */
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(6px); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-24px); }
+}
+
+@keyframes glassGlow {
+  0%, 100% {
+    box-shadow: 0 0 22px rgba(0,212,255,0.04);
+    background-color: rgba(8, 25, 55, 0.52);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0,212,255,0.08);
+    background-color: rgba(8, 25, 55, 0.62);
+  }
+}
+
+/* ── GLOW PULSE ── */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(0,212,255,0.2); }
+  50% { box-shadow: 0 0 30px rgba(0,212,255,0.5), 0 0 60px rgba(0,212,255,0.2); }
+}
+
+/* ── TOUCH RING ── */
+@keyframes touchRipple {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── SCROLL LINE ── */
+@keyframes scrollWave {
+  0% { width: 16px; opacity: 0.3; }
+  50% { width: 56px; opacity: 1; }
+  100% { width: 16px; opacity: 0.3; }
+}
+
+/* ── KEY PULSE ── */
+@keyframes keyBeat {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.4; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ── STROKE PATH ── */
+@keyframes strokeDash {
+  to { stroke-dashoffset: -18; }
+}
+
+/* ── CONNECTING LINE FLOW ── */
+@keyframes lineFlow {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ── FADEUP ENTRY ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.8s ease both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* ── NAV ── */
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cyan);
+  border-color: var(--border-glow);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+/* ── BUTTON GLOW ── */
+.btn-glow {
+  background: linear-gradient(135deg, rgba(0,112,255,0.3), rgba(124,58,237,0.3));
+  border: 1px solid rgba(0,112,255,0.5);
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 12px;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 24px rgba(0,128,255,0.4);
+  transform: scale(1.02);
+}
+.btn-glow:active {
+  transform: scale(0.98);
+}
+
+/* ── METRIC BARS ── */
+.metric-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+}

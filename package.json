@@ -1,0 +1,12 @@
+{
+  "name": "frontend-mini-project-root",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "npm --prefix frontend-mini-project run dev",
+    "start": "npm --prefix frontend-mini-project run dev",
+    "build": "npm --prefix frontend-mini-project run build",
+    "preview": "npm --prefix frontend-mini-project run preview",
+    "lint": "npm --prefix frontend-mini-project run lint"
+  }
+}
